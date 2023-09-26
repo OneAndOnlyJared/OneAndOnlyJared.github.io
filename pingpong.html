@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping-Pong Animation</title>
+    <style>
+
+        
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: #c9bcbc;
+        }
+
+        .paddleBot {
+            border-radius: 8px;
+            position: absolute;
+            bottom: 225px;
+            left: 50%;
+            transform: translateX(-50%);
+            transform: rotate(90deg);
+            width: 25px;
+            height: 50px;
+            
+            background-color: #db9327;
+            box-shadow: inset 0 0 0 2px #000;
+            animation: paddleBot 2s infinite;
+        }
+
+        .paddleTop{
+            position: absolute;
+            bottom: 200px;
+            left:50%;
+            transform: translateX(30%);
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: #e73516;
+            box-shadow: inset 0 0 0 2px #000;
+            animation: paddleTop 2s infinite;
+
+        }
+
+        .ball {
+            position: absolute;
+            bottom: 20px; 
+            right: 44%; 
+            width: 30px;
+            height: 30px;
+            background-color: #d6d8df;
+            border-radius: 50%;
+            animation: bounce 2s infinite;
+            box-shadow: inset 0 0 0 2px #949393;
+            
+        }
+
+
+       
+
+        
+
+        @keyframes bounce {
+            0%, 100% {
+                bottom: 220px;
+                animation-timing-function: ease-out;
+            }
+            50% {
+                bottom: calc(100vh - 90px);
+                animation-timing-function: ease-in;
+            }
+        }
+    </style>
+</head>
+<body>
+
+  
+    <div class="container">
+        <div class="paddleBot"></div>
+        <div class="paddleTop"></div>
+        <div class="ball"></div>
+    </div>
+</body>
+</html>

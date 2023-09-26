@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping-Pong Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: #eee;
+        }
+
+        .paddle {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 10px;
+            background-color: #333;
+        }
+
+        .ball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff5722;
+            border-radius: 50%;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                bottom: 20px;
+                animation-timing-function: ease-out;
+            }
+            50% {
+                bottom: calc(100vh - 50px);
+                animation-timing-function: ease-in;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="paddle"></div>
+        <div class="ball"></div>
+    </div>
+</body>
+</html>
