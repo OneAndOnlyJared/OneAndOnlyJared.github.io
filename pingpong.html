@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +29,7 @@
             transform: rotate(90deg);
             width: 25px;
             height: 50px;
-            
+            rotate: x 45deg;
             background-color: #db9327;
             box-shadow: inset 0 0 0 2px #000;
             animation: paddleBot 2s infinite;
@@ -42,6 +43,7 @@
             border-radius: 50%;
             width: 100px;
             height: 100px;
+            rotate: x 45deg;
             background-color: #e73516;
             box-shadow: inset 0 0 0 2px #000;
             animation: paddleTop 2s infinite;
@@ -68,7 +70,7 @@
 
         @keyframes bounce {
             0%, 100% {
-                bottom: 220px;
+                bottom: 250px;
                 animation-timing-function: ease-out;
             }
             50% {
