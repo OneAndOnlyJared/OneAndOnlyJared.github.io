@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Loading Animation</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* This centers vertically */
+        perspective: 1000px; /* Adjust the perspective depth */
+      }
+      .coin {
+        animation: rotate-coin 10s linear 0s infinite; 
+      }
+      .animated-element {
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+        border-radius: 50%;
+        position: absolute;
+        /* opacity: 0%; */
+        animation: loading 2s cubic-bezier(0.25, 0.1, 0.25, 1) 0s infinite;;
+      }
+      .animated-element:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .animated-element:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .animated-element:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .animated-element:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+      .animated-element:nth-child(5) {
+        animation-delay: 0.8s;
+      }
+      .animated-element:nth-child(6) {
+        animation-delay: 1s;
+      }
+      .animated-element:nth-child(7) {
+        animation-delay: 1.2s;
+      }
+
+
+      .animated-element:nth-child(8) {
+        animation-delay: 1.4s;
+      }
+
+
+      .animated-element:nth-child(9) {
+        animation-delay: 1.6s;
+      }
+
+
+      .animated-element:nth-child(10) {
+        animation-delay: 1.8s;
+      }
+
+
+    
+      @keyframes loading {
+        0% {
+          opacity: 100%;
+          transform: rotateZ(0deg) translateX(50px);
+        }
+        50% {
+          opacity: 0%;
+          transform: rotateZ(180deg) translateX(50px);
+        }
+        60% {
+          opacity: 0%;
+        }
+        100% {
+          opacity: 100%;
+          transform: rotateZ(360deg) translateX(50px);
+        }
+      }
+      @keyframes rotate-coin {
+        0% {
+          transform: rotateX(0deg);
+        }
+        
+        100% {
+          transform: rotateX(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Loading Animation</h1>
+    <div class="container">
+      <div class="coin">
+        <div class="animated-element"></div>
+        <div class="animated-element"></div>
+        <div class="animated-element"></div>
+        <div class="animated-element"></div>
+        <div class="animated-element"></div>
+        <div class="animated-element"></div>
+        <div class="animated-element"></div>
+        <div class="animated-element"></div>
+        <div class="animated-element"></div>
+        <div class="animated-element"></div>
+      </div>
+    </div>
+  </body>
+</html>
