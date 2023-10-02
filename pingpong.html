@@ -29,26 +29,100 @@
             transform: rotate(90deg);
             width: 25px;
             height: 50px;
-            rotate: x 45deg;
+            rotate: x 40deg;
             background-color: #db9327;
             box-shadow: inset 0 0 0 2px #000;
             animation: paddleBot 2s infinite;
+            z-index: 1;
+            animation: rotate 2s linear infinite;
+            
         }
+
+
+
+        .paddleBot:nth-child(1) {
+            bottom: 224.5px;
+
+        }
+
+
+        .paddleBot:nth-child(2) {
+            bottom: 224px;
+
+        }
+
+
+
+        .paddleBot:nth-child(3) {
+            bottom: 223.5px;
+
+        }
+
+        .paddleBot:nth-child(4) {
+            bottom: 223px;
+
+        }
+
+        .paddleBot:nth-child(5) {
+            bottom: 222.5px;
+
+        }
+
+        .paddleBot:nth-child(6) {
+            bottom: 222px;
+
+        }
+
+
+
+
+
 
         .paddleTop{
             position: absolute;
-            bottom: 200px;
-            left:50%;
-            transform: translateX(30%);
+            left:45.7%;
+            transform: translateX(30%) translateY(-50%);
+            bottom: 205px;
             border-radius: 50%;
             width: 100px;
             height: 100px;
-            rotate: x 45deg;
+            rotate: x 40deg;
             background-color: #e73516;
             box-shadow: inset 0 0 0 2px #000;
-            animation: paddleTop 2s infinite;
+            animation: rotateTop 2s linear infinite;
+            z-index: 2;
+            
 
         }
+
+        .paddleTop:nth-child(1) {
+            bottom: 206px;
+
+        }
+
+        .paddleTop:nth-child(2) {
+            bottom: 207px;
+
+        }
+
+        .paddleTop:nth-child(3) {
+            bottom: 208px;
+
+        }
+
+        .paddleTop:nth-child(4) {
+            bottom: 209px;
+
+        }
+
+        .paddleTop:nth-child(5) {
+            bottom: 210px;
+
+        }
+
+
+
+        
 
         .ball {
             position: absolute;
@@ -60,13 +134,25 @@
             border-radius: 50%;
             animation: bounce 2s infinite;
             box-shadow: inset 0 0 0 2px #949393;
+            z-index: 3;
+            animation-timing-function: cubic-bezier(0.56, 1.75, 0.61, 1.05);
+        
             
         }
 
 
        
 
-        
+        @keyframes rotate {
+            0%, 100% {
+                transform: rotateX(0deg); 
+            }
+            50% {
+                transform: rotateX(-90deg); 
+            }
+
+            
+        }
 
         @keyframes bounce {
             0%, 100% {
@@ -84,9 +170,21 @@
 
   
     <div class="container">
-        <div class="paddleBot"></div>
         <div class="paddleTop"></div>
+        <div class="paddleTop"></div>
+        <div class="paddleTop"></div>
+        <div class="paddleTop"></div>
+        <div class="paddleTop"></div>
+        <div class="paddleBot"></div>
+        <div class="paddleBot"></div>
+        <div class="paddleBot"></div>
+        <div class="paddleBot"></div>
+        <div class="paddleBot"></div>
+        <div class="paddleBot"></div>
+        <div class="paddleBot"></div>
+        
         <div class="ball"></div>
+        
     </div>
 </body>
 </html>
