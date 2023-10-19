@@ -136,6 +136,66 @@
 
       }
 
+      #bar-03{
+        transform: scaleX(0);
+        transform-origin: left;
+        transform-box: fill-box;
+        transition: transform 1s linear;
+      }
+
+      #shadow-03{
+        opacity:0;
+      }
+
+      #data-03:target > #bar-03{
+        transform: scaleX(1);
+      }
+
+      #data-03:target > #shadow-03{
+        opacity: 1;
+        transition: all 1s linear;
+      }
+
+      #arrows-03{
+        transition: all 2s ease-out;
+      }
+
+      #data-03:target > #arrows-03{
+        transform: translateX(10px);
+        animation-delay: 2s;
+      }
+
+
+
+      #bar-04{
+        transform: scaleX(0);
+        transform-origin: left;
+        transform-box: fill-box;
+        transition: transform 1s linear;
+      }
+
+      #shadow-04{
+        opacity:0;
+      }
+
+      #data-04:hover > #bar-04{
+        transform: scaleX(1);
+      }
+
+      #data-04:hover > #shadow-04{
+        opacity: 1;
+        transition: all 1s linear;
+      }
+
+      #arrows-04{
+        transition: all 2s ease-out;
+      }
+
+      #data-04:hover > #arrows-04{
+        transform: translateX(10px);
+        animation-delay: 2s;
+      }
+
 
 
 
@@ -986,10 +1046,71 @@
 
 
     <script>
+      document.getElementById("data-03").addEventListener('click', () => {
+        const isBarOn = document.getElementById("bar-03").style.transform === 'scaleX(1)';
+        if (isBarOn) {
+          closeBar();
+        } else {
+          openBar();
+        }
+      });
+
+      function closeBar() {
+        document.getElementById("bar-03").style.transform = 'scaleX(0)';
+        document.getElementById("shadow-03").style.opacity = '0';
+        document.getElementById("arrows-03").style.transform = 'translateX(-100%)';
+      }
+
+      function openBar() {
+        document.getElementById("bar-03").style.transform = 'scaleX(1)';
+        document.getElementById("shadow-03").style.opacity = '1';
+        document.getElementById("arrows-03").style.transform = 'translateX(0%)';
+      }
+
+
+
+      const data04 = document.getElementById("data-04");
+      const bar04 = document.getElementById("bar-04");
+      const shadow04 = document.getElementById("shadow-04");
+      const arrows04 = document.getElementById("arrows-04");
+
+      window.addEventListener('scroll', () => {
+      const rect = data04.getBoundingClientRect();
+
+      if (rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+        // element in view, trigger animation
+        document.getElementById("bar-04").style.transform = 'scaleX(1)';
+        document.getElementById("shadow-04").style.opacity = '1';
+        document.getElementById("arrows-04").style.transform = 'translateX(0%)';
+      } else {
+        // element out of view, close animation
+        document.getElementById("bar-04").style.transform = 'scaleX(0)';
+        document.getElementById("shadow-04").style.opacity = '0';
+        document.getElementById("arrows-04").style.transform = 'translateX(-100%)';
+      }
+    });
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       const bar05 = document.getElementById("bar-05");
       let isBar05Expanded = false;
 
-      // Function to toggle "bar-03" animation
+      // Function to toggle "bar-05" animation
       function toggleBar05Animation() {
         if (isBar05Expanded) {
           bar05.style.transition = "transform 1s ease-in-out";
