@@ -3,34 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clothing Store with Pixi.js</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Pixi's Closet</title>
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #menu {
+            background: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+        }
+        #menu a {
+            text-decoration: none;
+            color: #fff;
+        }
+        #app {
+            display: flex;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div id="header" class="header-background"></div>
-        <h1>Clothing Store</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="menu">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Collections</a>
+        <a href="#">Contact</a>
+    </div>
+    <div id="app"></div>
 
-    <section class="products">
-        <!-- Product listings as in the previous example -->
-    </section>
+    <script>
+        const Application = PIXI.Application;
+        const Graphics = PIXI.Graphics;
 
-    <footer>
-        <p>&copy; 2023 Clothing Store</p>
-    </footer>
+        const app = new Application({
+            width: window.innerWidth,
+            height: window.innerHeight - 50, // Adjust for the menu bar height
+            backgroundColor: 0xffffff,
+            antialias: true,
+        });
 
-    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/20.0.0/tween.umd.js"></script>
+        document.getElementById("app").appendChild(app.view);
 
-    <script src="animation.js"></script>
+        // Create a colorful, animated background with a moving circle
+        const background = new Graphics();
+        app.stage.addChild(background);
+
+        // Circle animation variables
+        let hue = 0;
+        const speed = 0.1;
+        let circleX = app.renderer.screen.width / 2;
+        let circleY = app.renderer.screen.height / 2;
+        let circleSpeedX = 2;
+        let circleSpeedY = 1;
+
+        // Animation loop
+        app.ticker.add(() => {
+            // Update the background color
+            hue += speed;
+            if (hue > 360) {
+                hue -= 360;
+            }
+            background.clear();
+            background.beginFill(0x000000);
+            background.lineStyle(2, 0xffffff);
+            background.drawRect(0, 0, app.renderer.screen.width, app.renderer.screen.height);
+            background.endFill();
+            background.beginFill(PIXI.utils.rgb2hex({ h: hue, s: 1, v: 1 }));
+            background.drawCircle(circleX, circleY, 100);
+            background.endFill();
+
+            // Update the circle's position
+            circleX += circleSpeedX;
+            circleY += circleSpeedY;
+
+            // Detect when the circle hits the screen edges and reverse its direction
+            if (circleX < 100 || circleX > app.renderer.screen.width - 100) {
+                circleSpeedX *= -1;
+            }
+            if (circleY < 100 || circleY > app.renderer.screen.height - 100) {
+                circleSpeedY *= -1;
+            }
+        });
+    </script>
 </body>
 </html>

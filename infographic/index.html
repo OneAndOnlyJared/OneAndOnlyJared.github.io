@@ -1046,6 +1046,7 @@
 
 
     <script>
+      //bar 3
       document.getElementById("data-03").addEventListener('click', () => {
         const isBarOn = document.getElementById("bar-03").style.transform === 'scaleX(1)';
         if (isBarOn) {
@@ -1068,7 +1069,7 @@
       }
 
 
-
+      //bar 4
       const data04 = document.getElementById("data-04");
       const bar04 = document.getElementById("bar-04");
       const shadow04 = document.getElementById("shadow-04");
@@ -1078,12 +1079,12 @@
       const rect = data04.getBoundingClientRect();
 
       if (rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
-        // element in view, trigger animation
+        
         document.getElementById("bar-04").style.transform = 'scaleX(1)';
         document.getElementById("shadow-04").style.opacity = '1';
         document.getElementById("arrows-04").style.transform = 'translateX(0%)';
       } else {
-        // element out of view, close animation
+        
         document.getElementById("bar-04").style.transform = 'scaleX(0)';
         document.getElementById("shadow-04").style.opacity = '0';
         document.getElementById("arrows-04").style.transform = 'translateX(-100%)';
@@ -1106,11 +1107,11 @@
 
 
 
-
+      //bar 5
       const bar05 = document.getElementById("bar-05");
       let isBar05Expanded = false;
 
-      // Function to toggle "bar-05" animation
+      
       function toggleBar05Animation() {
         if (isBar05Expanded) {
           bar05.style.transition = "transform 1s ease-in-out";
