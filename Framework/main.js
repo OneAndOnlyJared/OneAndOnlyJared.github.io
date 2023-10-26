@@ -35,7 +35,7 @@ let activeSlide = 1;
 
 loader
 	.add('a', 'watch.jpg')
-	.add('b', 'images/2.png');
+	.add('b', 'tshirts.jpg');
 loader.load((loader, resources) => {
 	console.log('all images was load');
 
