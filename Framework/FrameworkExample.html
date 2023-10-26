@@ -1,94 +1,75 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixi's Closet</title>
-    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        #menu {
-            background: #333;
-            color: #fff;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px;
-        }
-        #menu a {
-            text-decoration: none;
-            color: #fff;
-        }
-        #app {
-            display: flex;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<title>Travel platform</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:900|Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.5/pixi.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.7.0/pubsub.min.js"></script>
 </head>
 <body>
-    <div id="menu">
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">Collections</a>
-        <a href="#">Contact</a>
-    </div>
-    <div id="app"></div>
+	<!-- begin header -->
+	<header class="header">
+		<div class="header__wrapper">
+			<div class="header__logo logo">Traveler</div>
+			<div class="header__right">
+				<button class="header__search"></button>
+				<button class="header__menu"></button>
+			</div>
+		</div>
+	</header>
+	<!-- end header -->
 
-    <script>
-        const Application = PIXI.Application;
-        const Graphics = PIXI.Graphics;
+	<!-- begin sections -->
+	<div class="sections">
+		<section class="section is-active">
+			<div class="section__title-list">
+				<h2 class="section__title" data-title="1"><span class="section__number">01</span>New York</h2>
+				<h2 class="section__title" data-title="2"><span class="section__number">02</span>London</h2>
+			</div>
+		</section>
+	</div>
+	<!-- end sections -->
 
-        const app = new Application({
-            width: window.innerWidth,
-            height: window.innerHeight - 50, // Adjust for the menu bar height
-            backgroundColor: 0xffffff,
-            antialias: true,
-        });
+	<!-- begin footer -->
+	<footer class="footer">
+		<div class="footer__wrapper">
+			<div class="footer__left">
+				<div class="footer__social">
+					<ul class="social__list">
+						<li class="social__item">
+							<a href="" class="social__link">Twitter</a>
+						</li>
+						<li class="social__item">
+							<a href="" class="social__link">Facebook</a>
+						</li>
+						<li class="social__item">
+							<a href="" class="social__link">Instagram</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer__right">
+				<div class="footer__lang">
+					<ul class="lang__list">
+						<li class="lang__item">
+							<button class="lang__btn lang__btn--active ">En</button>
+						</li>
+						<li class="lang__item">
+							<button class="lang__btn">Ru</button>
+						</li>
+					</ul>
+				</div>
+				<div class="footer__logo logo">Traveler</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+	<div id="canvas"></div>
 
-        document.getElementById("app").appendChild(app.view);
-
-        // Create a colorful, animated background with a moving circle
-        const background = new Graphics();
-        app.stage.addChild(background);
-
-        // Circle animation variables
-        let hue = 0;
-        const speed = 0.1;
-        let circleX = app.renderer.screen.width / 2;
-        let circleY = app.renderer.screen.height / 2;
-        let circleSpeedX = 2;
-        let circleSpeedY = 1;
-
-        // Animation loop
-        app.ticker.add(() => {
-            // Update the background color
-            hue += speed;
-            if (hue > 360) {
-                hue -= 360;
-            }
-            background.clear();
-            background.beginFill(0x000000);
-            background.lineStyle(2, 0xffffff);
-            background.drawRect(0, 0, app.renderer.screen.width, app.renderer.screen.height);
-            background.endFill();
-            background.beginFill(PIXI.utils.rgb2hex({ h: hue, s: 1, v: 1 }));
-            background.drawCircle(circleX, circleY, 100);
-            background.endFill();
-
-            // Update the circle's position
-            circleX += circleSpeedX;
-            circleY += circleSpeedY;
-
-            // Detect when the circle hits the screen edges and reverse its direction
-            if (circleX < 100 || circleX > app.renderer.screen.width - 100) {
-                circleSpeedX *= -1;
-            }
-            if (circleY < 100 || circleY > app.renderer.screen.height - 100) {
-                circleSpeedY *= -1;
-            }
-        });
-    </script>
+	<script src="main.js"></script>
 </body>
 </html>
