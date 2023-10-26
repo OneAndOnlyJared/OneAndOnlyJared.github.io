@@ -146,4 +146,26 @@ PubSub.subscribe('gotoSlide', function (msg, data) {
 			moveBack(current, next);
 			draw();
 		}
+
+
 });
+
+window.onload = function() {
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+  
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  
+    document.getElementById("home").addEventListener("click", function() {
+      // Add your code to return to the starting page here
+      closeNav();
+    });
+  
+    document.getElementById("info").addEventListener("click", function() {
+      alert("This shop was founded in 1990 at Taylor University");
+      closeNav();
+    });
+  }

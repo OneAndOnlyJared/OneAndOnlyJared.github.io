@@ -90,6 +90,7 @@ canvas {
 	text-transform: uppercase;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 80px;
+	margin-bottom: 20px; /* Add this line */
 }
 .section__number {
 	position: absolute;
@@ -147,3 +148,26 @@ canvas {
 .lang__btn--active {
 	opacity: 1;
 }
+.sidenav {
+    height: 100%;
+    width: 200px; /* Specify a width */
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
