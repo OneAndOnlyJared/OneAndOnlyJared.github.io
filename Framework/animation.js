@@ -1,75 +1,59 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // Create a Pixi.js Application
+    const app = new PIXI.Application({
+        width: 800,
+        height: 200,
+        view: document.getElementById('header'), // Use the header div as the canvas
+        transparent: true,
+    });
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Travel platform</title>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:900|Open+Sans" rel="stylesheet">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.5/pixi.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.7.0/pubsub.min.js"></script>
-</head>
-<body>
-	<!-- begin header -->
-	<header class="header">
-		<div class="header__wrapper">
-			<div class="header__logo logo">Traveler</div>
-			<div class="header__right">
-				<button class="header__search"></button>
-				<button class="header__menu"></button>
-			</div>
-		</div>
-	</header>
-	<!-- end header -->
+    // Add the Pixi.js canvas as a background for the header
+    app.view.style.position = 'absolute';
 
-	<!-- begin sections -->
-	<div class="sections">
-		<section class="section is-active">
-			<div class="section__title-list">
-				<h2 class="section__title" data-title="1"><span class="section__number">01</span>New York</h2>
-				<h2 class="section__title" data-title="2"><span class="section__number">02</span>London</h2>
-			</div>
-		</section>
-	</div>
-	<!-- end sections -->
+    // Create a Graphics object for the header background
+    const headerBackground = new PIXI.Graphics();
+    headerBackground.beginFill(0x333333); // Initial background color
+    headerBackground.drawRect(0, 0, app.renderer.width, app.renderer.height);
+    headerBackground.endFill();
 
-	<!-- begin footer -->
-	<footer class="footer">
-		<div class="footer__wrapper">
-			<div class="footer__left">
-				<div class="footer__social">
-					<ul class="social__list">
-						<li class="social__item">
-							<a href="" class="social__link">Twitter</a>
-						</li>
-						<li class="social__item">
-							<a href="" class="social__link">Facebook</a>
-						</li>
-						<li class="social__item">
-							<a href="" class="social__link">Instagram</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="footer__right">
-				<div class="footer__lang">
-					<ul class="lang__list">
-						<li class="lang__item">
-							<button class="lang__btn lang__btn--active ">En</button>
-						</li>
-						<li class="lang__item">
-							<button class="lang__btn">Ru</button>
-						</li>
-					</ul>
-				</div>
-				<div class="footer__logo logo">Traveler</div>
-			</div>
-		</div>
-	</footer>
-	<!-- end footer -->
-	<div id="canvas"></div>
+    // Add the header background to the stage
+    app.stage.addChild(headerBackground);
 
-	<script src="js/main.js"></script>
-</body>
-</html>
+    // Define the new background color on hover
+    const newColor = 0x0066ff; // Blue
+
+    // Add interactivity to change the background color on hover
+    headerBackground.interactive = true;
+    headerBackground.buttonMode = true;
+
+    headerBackground.on('mouseover', () => {
+        headerBackground.tween = new TWEEN.Tween(headerBackground)
+            .to({ tint: newColor }, 500)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .onUpdate(() => {
+                headerBackground.clear();
+                headerBackground.beginFill(headerBackground.tint);
+                headerBackground.drawRect(0, 0, app.renderer.width, app.renderer.height);
+                headerBackground.endFill();
+            })
+            .start();
+    });
+
+    headerBackground.on('mouseout', () => {
+        headerBackground.tween = new TWEEN.Tween(headerBackground)
+            .to({ tint: 0x333333 }, 500)
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .onUpdate(() => {
+                headerBackground.clear();
+                headerBackground.beginFill(headerBackground.tint);
+                headerBackground.drawRect(0, 0, app.renderer.width, app.renderer.height);
+                headerBackground.endFill();
+            })
+            .start();
+    });
+
+    // Start the Pixi.js animation loop
+    app.ticker.add(() => {
+        TWEEN.update();
+    });
+});

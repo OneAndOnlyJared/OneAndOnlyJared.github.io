@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Hover Music</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .image-container {
+      position: relative;
+    }
+
+    #hover-image{
+        width: 200px;
+        height: auto;
+    }
+
+    #music {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="image-container">
+      <img src="cudi.jpg" alt="Hover Image" id="hover-image">
+      <audio id="music" src="dreams.mp3"></audio>
+    </div>
+  </div>
+
+  <script>
+    const image = document.getElementById('hover-image');
+    const music = document.getElementById('music');
+
+    image.addEventListener('mouseover', () => {
+      music.play();
+    });
+
+    image.addEventListener('mouseout', () => {
+      music.pause();
+      music.currentTime = 0;
+    });
+  </script>
+</body>
+</html>

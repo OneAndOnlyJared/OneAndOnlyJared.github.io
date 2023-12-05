@@ -11,12 +11,12 @@ let sectionTitlesNodes = document.querySelectorAll('[data-title]'),
 
 console.log('canvasWidth: ' + canvasWidth, 'canvasHeight: ' + canvasHeight);
 
-// PIXI INIT STAGE
+// PIXI starting stage, creating containers for the image, and then add them to stage
 let renderer = PIXI.autoDetectRenderer(canvasWidth, canvasHeight, {backgroundColor : 0x1099bb, antialias: true});
 canvasWrap.appendChild(renderer.view);
 
 let loader = PIXI.loader;
-// create the root of the scene graph
+// make the root 
 let stage = new PIXI.Container();
 
 let container = new PIXI.Container();
@@ -32,7 +32,7 @@ let textures = [],
 let canGo = true;
 let delay = 1400;
 let activeSlide = 1;
-
+//load the pictures, we do this by adding them to queue them up
 loader
 	.add('a', 'watch.jpg')
 	.add('b', 'tshirts.jpg');
@@ -43,9 +43,9 @@ loader.load((loader, resources) => {
 		textures.push(resources[key].texture);
 	});
 
-	// OLD IMAGE
+	// THE OLD IMAGE
 	current = new PIXI.Sprite(textures[0]);
-	// set to the image Cover size effect
+	
 	let winprop = canvasWidth / canvasHeight;
 	let imageprop = current.width / current.height;
 
@@ -59,7 +59,7 @@ loader.load((loader, resources) => {
 	current.anchor.x = 0.5;
 	current.anchor.y = 0.5;
 
-	// NEW IMAGE
+	// THE NEW IMAGE
 	next = new PIXI.Sprite(textures[1]);
 	imageprop = next.width / next.height;
 
@@ -73,17 +73,20 @@ loader.load((loader, resources) => {
 	next.anchor.x = 0.5;
 	next.anchor.y = 0.5;
 
-	next.rotation = Math.PI; // rotate next image to 180 deg
+	next.rotation = Math.PI; // rotating next image to 180 deg thats behind the picture, can show demo if needed
 
 	container.addChild(next);
 	container2.addChild(current);
 
 	stage.addChild(container);
 	stage.addChild(container2);
+    //sending them to the webpage
 
 
 	renderer.render(stage);
 });
+//now with pixi can make this cover effect possible
+//
 
 function draw(){
 	renderer.render(stage);
