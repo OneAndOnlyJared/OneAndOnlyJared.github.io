@@ -7,6 +7,25 @@
             margin: 0;
             padding: 0;
         }
+
+        button {
+            background-color: #4CAF50; /* Green background */
+            border: none; /* Remove border */
+            color: white; /* White text */
+            padding: 15px 32px; /* Some padding */
+            text-align: center; /* Centered text */
+            text-decoration: none; /* Remove underline */
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer; /* Mouse pointer on hover */
+            transition-duration: 0.4s; /* Transition effect */
+            border-radius: 12px; /* Rounded corners */
+        }
+
+button:hover {
+  background-color: #45a049; /* Green background on hover */
+}
         .navbar {
             overflow: hidden;
             background-color: rgba(255, 255, 255, 0.39);
@@ -34,6 +53,25 @@
             text-align: center;
         }
 
+        .section-band {
+            min-height: 70vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section-tour{
+            min-height: 20vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section-tour-dates{
+            min-height: 20vh;
+            padding: 40px;
+            text-align: center;
+
+        }
+
         #home {
             background-image: url('HeroImage.jpg'); /* Set the background image */
             background-size: cover;
@@ -52,14 +90,17 @@
 
         }
         #tour {
-            background-color: pink;
+            background-color: rgb(0, 0, 0);
+            color: white;
         }
         #albums {
             background-color: yellow;
         }
 
         #meet-the-band {
-            padding: 40px;
+            max-height: 500px; /* Adjust this value to control the maximum height of the section */
+            overflow: auto; /* Add a scrollbar if the content exceeds the maximum height */
+            padding: 20px;
             text-align: center;
             background-color: #f9f9f9;
             border-bottom: 2px solid #ddd;
@@ -75,15 +116,17 @@
 
         .image-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             flex-wrap: wrap;
         }
 
-        /*.band-member { */
-           /* flex: 1 0 10%; /* Adjust this value to control the width of each band member */
-          /*  text-align: center; */
-           /* margin-bottom: 20px;*/
-        /*} */
+        .band-member img {
+            width: 100%;
+            max-width: 200px; /* Adjust this value to control the maximum width of the image */
+            height: auto;
+            max-height: 200px; /* Adjust this value to control the maximum height of the image */
+            margin: 0 auto; 
+        } 
 
         .band-member img {
             max-width: 80%; /* Adjust this value to control the width of the image */
@@ -111,6 +154,80 @@
             src: url('Rock3D-Regular.ttf') format('truetype');
         }
 
+        .scroll-container {
+            position: relative;
+        }
+
+        .grid-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .grid-container::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari and Opera */
+        }
+
+        .grid-item {
+            flex: 0 0 auto;
+            width: 200px;
+            height: 200px;
+            scroll-snap-align: start;
+            text-align: center;
+            line-height: 200px;
+            font-size: 20px;
+        }
+
+        .grid-item:nth-child(odd) {
+            background-color: purple;
+        }
+
+        .grid-item:nth-child(even) {
+            background-color: pink;
+        }
+
+        .grid-item a {
+            color: inherit; /* Make the link color the same as the text color */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s ease, transform 0.3s ease; /* Add transition for color and transform */
+        }
+
+        .grid-item a:hover {
+            cursor: pointer; /* Change cursor to pointer when hovering */
+            color: red; /* Change color to red when hovering */
+            transform: scale(1.1); /* Increase size when hovering */
+        }
+        .scroll-button {
+            position: absolute; /* Fixed/sticky position */
+            background-color: #bb9cbcdc; /* background */
+            border: none; /* Remove border */
+            color: white; /* White text */
+            padding: 15px 32px; /* Some padding */
+            text-align: center; /* Centered text */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px;
+            cursor: pointer; /* Mouse pointer on hover */
+            transition-duration: 0.4s; /* Transition effect */
+            border-radius: 12px; /* Rounded corners */
+            top: 62%; /* Position the button in the middle of the page vertically */
+            transform: translateY(-50%);
+        }
+
+        #scrollLeft {
+            left: 0; /* Position the button at the left of the page */
+        }
+
+        #scrollRight {
+            right: 0; /* Position the button at the right of the page */
+        }
+
+        .scroll-button:hover {
+            background-color: #45a049; /* Green background on hover */
+        }
+
+    
+
 
     </style>
 </head>
@@ -129,38 +246,55 @@
   <h2 style="font-family: 'Rock-Pop', Arial, sans-serif; font-size: 40px; color: #db55ba;">Rock-Pop</h2>
 </div>
 
-<div id="tour" class="section">
+<div id="tour" class="section-tour">
   <h2>Tour Dates and Locations</h2>
-  <div class="image-container">
-    <img src="holder.jpg" alt="Tour Date 1">
-    <img src="holder.jpg" alt="Tour Date 2">
-    <img src="holder.jpg" alt="Tour Date 3">
-    <img src="holder.jpg" alt="Tour Date 4">
-    <img src="holder.jpg" alt="Tour Date 5">
-  </div>
 </div>
 
-<div id="meet-the-band" class="section" style="background-color: white;">
+<div class="scroll-container">
+    <div class="grid-container" id="gridContainer">
+      <!-- Grid items will be added here by JavaScript -->
+    </div>
+    <button id="scrollLeft" class="scroll-button">←</button>
+    <button id="scrollRight" class="scroll-button">→</button>
+  </div>
+
+
+
+<div id="meet-the-band" class="section-band" style="background-color: white;">
     <h2>Meet the Band</h2>
     <div class="image-container">
-      <div class="band-member">
-        <img src="band_member1.jpg" alt="Band Member 1">
-        <p>Cole Whitehead</p>
-      </div>
-      <div class="band-member">
-        <img src="band_member2.jpg" alt="Band Member 2">
-        <p>Bailey Tichenor</p>
-      </div>
-      <div class="band-member">
-        <img src="band_member3.jpg" alt="Band Member 2">
-        <p>Anna Mishler</p>
-      </div>
-      <div class="band-member">
-        <img src="band_member4.jpg" alt="Band Member 2">
-        <p>Jared Sennese</p>
+        <img src="band_member1.jpg" title= "Cole Whitehead" alt="Band Member 1">
+        <img src="band_member2.jpg" title= "Bailey Tichenor"alt="Band Member 2">
+        <img src="band_member3.jpg" title= "Anna Mishler" alt="Band Member 3">
+        <img src="band_member4.jpg" title= "Jared Sennese" alt="Band Member 4">
       </div>
     </div>
+
+    
+
+
+ <!--
+<div class="image-container-band">
+    <div class="band-member">
+      <img src="band_member1.jpg" alt="Band Member 1">
+      <p>Cole Whitehead</p>
+    </div>
+    <div class="band-member-band">
+      <img src="band_member2.jpg" alt="Band Member 2">
+      <p>Bailey Tichenor</p>
+    </div>
+    <div class="band-member-band">
+      <img src="band_member3.jpg" alt="Band Member 3">
+      <p>Anna Mishler</p>
+    </div>
+    <div class="band-member-band">
+      <img src="band_member4.jpg" alt="Band Member 4">
+      <p>Jared Sennese</p>
+    </div>
   </div>
+</div>
+-->
+
 
 <div id="albums" class="section">
   <h2>Albums</h2>
@@ -194,6 +328,49 @@ function fadeNavbar() {
   
   lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
 }
+
+
+const datesAndLocations = [
+  '15 May Chicago',
+  '20 May New York',
+  '25 May Los Angeles',
+  '30 May Boston',
+  '5 June San Francisco',
+  '10 June Miami',
+  '15 June Dallas',
+  '20 June Seattle',
+  '25 June Denver',
+  '30 June Atlanta',
+  '5 July Houston',
+  '10 July Philadelphia',
+  '15 July Phoenix',
+  '20 July San Diego',
+  '25 July Detroit',
+  '30 July Minneapolis',
+  '5 August Orlando', 
+  
+];
+
+const gridContainer = document.getElementById('gridContainer');
+
+datesAndLocations.forEach((dateAndLocation, index) => {
+  const gridItem = document.createElement('div');
+  gridItem.className = 'grid-item';
+  const link = document.createElement('a');
+  link.href = 'https://www.ticketsonsale.com/tickets/drake-ball-arena-denver-1-18-2024-4395833'; // Replace with your checkout link
+  link.textContent = dateAndLocation;
+  
+  gridItem.appendChild(link);
+  gridContainer.appendChild(gridItem);
+});
+
+document.getElementById('scrollLeft').addEventListener('click', () => {
+  gridContainer.scrollBy({ left: -200, behavior: 'smooth' });
+});
+
+document.getElementById('scrollRight').addEventListener('click', () => {
+  gridContainer.scrollBy({ left: 200, behavior: 'smooth' });
+});
 </script>
 
 </body>
