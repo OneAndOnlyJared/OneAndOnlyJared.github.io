@@ -3,6 +3,7 @@
 <head>
     <style>
         body {
+          
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -23,6 +24,24 @@
             border-radius: 12px; /* Rounded corners */
         }
 
+
+        
+
+
+        .section-albums {
+          opacity: 0;
+          filter: blur(5px);
+          transform: translateX(-100%);
+          transition: all 1s;
+
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        
+
+      
 button:hover {
   background-color: #921aaf; /* Green background on hover */
 }
@@ -30,10 +49,11 @@ button:hover {
             overflow: hidden;
             background-color: rgba(255, 255, 255, 0.39);
             position: fixed;
+            z-index: 1000;
             width: 34%;
             top: 0;
             left: 35%;
-            transition: opacity 0.5s;
+            /*transition: opacity 0.5s; */
         }
         .navbar a {
             float: left;
@@ -48,9 +68,20 @@ button:hover {
             color: black;
         }
         .section {
+          opacity: 0;
+          filter: blur(5px);
+          transform: translateX(-100%);
+          transition: all 1s;
+
             min-height: 100vh;
             padding: 20px;
             text-align: center;
+        }
+
+        .section.show {
+          opacity: 1;
+          filter: blur(0);
+          transform: translateX(0);
         }
 
         .section-band {
@@ -70,6 +101,12 @@ button:hover {
             padding: 40px;
             text-align: center;
 
+        }
+
+        .section-contact{
+            min-height: 2vh;
+            padding: 20px;
+            text-align: center;
         }
 
         #home {
@@ -257,12 +294,53 @@ button:hover {
             left: 0;
         }
 
+        .loader {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Loader animation */
+        .loader-circle {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hide main content initially */
+        .main-content {
+            display: none;
+        }
+
+
+       
+
     
 
 
     </style>
 </head>
-<body onscroll="fadeNavbar()">
+<!--<body onscroll="fadeNavbar()">-->
+
+
+  <div class="loader" id="loader">
+    <div class="loader-circle"></div>
+</div>
 
 <div class="navbar" id="navbar">
   <a href="#home">Home</a>
@@ -272,6 +350,9 @@ button:hover {
   <a href="#contact">Contact</a>
   <a href="#login">Login</a>
 </div>
+
+
+
 
 <div id="home" class="section">
     <p style="font-family: 'Rock-Pop', Arial, sans-serif; font-size: 100px; color: #0d0c0d; display: inline-block;">Rock</p>
@@ -328,7 +409,7 @@ button:hover {
 -->
 
 
-<div id="albums" class="section">
+<div id="albums" class="section-album">
   <p>Albums</p>
   <div class="image-container">
     <img src="Album1.png" alt="Album 1">
@@ -340,29 +421,32 @@ button:hover {
   </div>
 </div>
 
-<div id="contact" class="section">
+<div id="contact" class="section-contact">
   <h2>Contact</h2>
   <p>For any inquiries, please contact us at info@rockpop.com</p>
 </div>
 
-<script>
-var lastScrollTop = 0;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.21/jquery.scrollify.min.js" integrity="sha512-UyX8JsMsNRW1cYl8BoxpcamonpwU2y7mSTsN0Z52plp7oKo1u92Xqfpv6lOlTyH3yiMXK+gU1jw0DVCsPTfKew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-function fadeNavbar() {
-  var navbar = document.getElementById("navbar");
-  var st = window.pageYOffset || document.documentElement.scrollTop;
+<script>
+//var lastScrollTop = 0;
+
+//function fadeNavbar() {
+  //var navbar = document.getElementById("navbar");
+  //var st = window.pageYOffset || document.documentElement.scrollTop;
   
-  if (st > lastScrollTop) {
+  //if (st > lastScrollTop) {
     // If scrolling down, fade out navbar
-    var opacity = Math.max(0, 1 - st / 300);
-    navbar.style.opacity = opacity;
-  } else {
+   // var opacity = Math.max(0, 1 - st / 300);
+   // navbar.style.opacity = opacity;
+ // } else {
     // If scrolling up, fade in navbar
-    navbar.style.opacity = 1;
-  }
+ //   navbar.style.opacity = 1;
+ // }
   
-  lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
-}
+ // lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+//}
 
 
 const datesAndLocations = [
@@ -421,7 +505,54 @@ albumImages.forEach((image) => {
     music.currentTime = 0;
   });
 });
+
+
+
+function hideLoader() {
+
+  const loader = document.getElementById('loader');
+  const mainContent = document.querySelectorAll('.main-content');
+
+  loader.style.display = 'none'; // Hide the loader
+  mainContent.forEach(section => {
+    section.style.display = 'block'; // Show the main content sections
+  });
+}
+
+        // Execute after the page is fully loaded
+window.addEventListener('load', function () {
+            // Delay in milliseconds (adjust this value as needed)
+  const delayInMillis = 2000; // 3000 milliseconds = 3 seconds
+
+            // Hide the loader after the delay
+  setTimeout(hideLoader, delayInMillis);
+});
+
+
+//$(function() {
+          //$.scrollify({
+           // section : ".section",
+         // });
+       // });
+
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    console.log(entry)
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show');
+    }
+    
+  });
+});
+
+const hiddenElements = document.querySelectorAll('.section');
+hiddenElements.forEach((el) => observer.observe(el));
 </script>
+
+
 
 </body>
 </html>
