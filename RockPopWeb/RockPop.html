@@ -85,10 +85,21 @@ button:hover {
         }
 
         .section-band {
+          opacity: 0;
+          filter: blur(5px);
+          transform: translateX(-100%);
+          transition: all 1s;
             min-height: 70vh;
             padding: 20px;
             text-align: center;
         }
+
+        .section-band.show {
+          opacity: 1;
+          filter: blur(0);
+          transform: translateX(0);
+        }
+
 
         .section-tour{
             min-height: 2vh;
@@ -328,8 +339,6 @@ button:hover {
         }
 
 
-       
-
     
 
 
@@ -548,9 +557,12 @@ const observer = new IntersectionObserver((entries) => {
   });
 });
 
-const hiddenElements = document.querySelectorAll('.section');
+const hiddenElements = document.querySelectorAll('.section, .section-band');
 hiddenElements.forEach((el) => observer.observe(el));
+
+
 </script>
+
 
 
 
