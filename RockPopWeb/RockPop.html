@@ -214,11 +214,10 @@ button:hover {
         #meet-the-band {
           background-image: url('BandBackground.jpg'); /* Set the background image */
             background-size: cover; /* Adjust the background image size to cover the container */
-            background-position: center;
             background-position: center; /* Center the background image */
             background-repeat: no-repeat;
             min-height: 90vh; /* Set the minimum height for the container */
-            padding: 20px;
+            padding: 5px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -289,6 +288,14 @@ button:hover {
             src: url('Retrolight.ttf') format('truetype');
         }
 
+        @font-face{
+            font-family: "Lexend";
+            src: url('Lexend-VariableFont_wght.ttf') format('truetype');
+        }
+        .Lexend-font {
+            font-family: 'Lexend', sans-serif; 
+        }
+
         
 
         .scroll-container {
@@ -307,17 +314,20 @@ button:hover {
         }
 
         .grid-item {
+            font-family: 'Lexend';
             flex: 0 0 auto;
             width: 200px;
             height: 200px;
             scroll-snap-align: start;
             text-align: center;
             line-height: 200px;
-            font-size: 20px;
+            font-size: 17px;
+
             
         }
 
         .grid-item:nth-child(odd) {
+          
             background-color: rgb(184, 101, 175);
         }
 
@@ -336,6 +346,8 @@ button:hover {
             color: red; /* Change color to red when hovering */
             transform: scale(1.1); /* Increase size when hovering */
         }
+
+        
         .scroll-button {
             position: absolute; /* Fixed/sticky position */
             background-color: #bb9cbcdc; /* background */
@@ -736,7 +748,9 @@ const datesAndLocations = [
   
 ];
 
+
 const gridContainer = document.getElementById('gridContainer');
+
 
 datesAndLocations.forEach((dateAndLocation, index) => {
   const gridItem = document.createElement('div');
