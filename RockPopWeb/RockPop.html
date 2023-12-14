@@ -51,7 +51,7 @@ button:hover {
             background-color: rgba(255, 255, 255, 0.39);
             position: fixed;
             z-index: 1000;
-            width: 34%;
+            width: 38%;
             top: 0;
             left: 35%;
             /*transition: opacity 0.5s; */
@@ -63,10 +63,26 @@ button:hover {
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
+            position: relative;
         }
         .navbar a:hover {
-            background-color: #ddd;
+            background-color: #8026c037;
             color: black;
+        }
+
+        .navbar a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 3px; /* Adjust the underline thickness */
+            background-color: #671d9c; /* Adjust the underline color */
+            transition: width 0.3s ease; 
+        } 
+
+        .navbar a:hover::after {
+            width: 100%;
         }
         .section {
           opacity: 0;
@@ -196,22 +212,22 @@ button:hover {
         }
 
         #meet-the-band {
-            max-height: 800px; /* Adjust this value to control the maximum height of the section */
-            overflow: auto; /* Add a scrollbar if the content exceeds the maximum height */
+          background-image: url('BandBackground.jpg'); /* Set the background image */
+            background-size: cover; /* Adjust the background image size to cover the container */
+            background-position: center; /* Center the background image */
+            min-height: 90vh; /* Set the minimum height for the container */
             padding: 20px;
-            text-align: right;
-            background-color: #f9f9f9;
-            border-bottom: 2px solid #ddd;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white; /* Set the text color */
     
     }
 
-    #meet-the-band p {
-            font-family: 'Retrolight', serif;
-            font-size: 70px;
-            color: rgb(184, 101, 175);
-            margin-bottom: 20px;
+    
             
-  }
 
         .image-container {
             display: flex;
@@ -471,14 +487,8 @@ button:hover {
 
 
 
-<div id="meet-the-band" class="section-band" style="background-color: white;">
-    <p>Meet the Band</p>
-    <div class="image-container">
-        <img src="band_member1.jpg" title= "Cole Whitehead" alt="Band Member 1">
-        <img src="band_member2.jpg" title= "Bailey Tichenor"alt="Band Member 2">
-        <img src="band_member3.jpg" title= "Anna Mishler" alt="Band Member 3">
-        <img src="band_member4.jpg" title= "Jared Sennese" alt="Band Member 4">
-      </div>
+<div id="meet-the-band" class="section-band">
+    
     </div>
 
     
