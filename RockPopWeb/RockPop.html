@@ -213,7 +213,7 @@ button:hover {
 
         #meet-the-band {
           background-image: url('BandBackground.jpg'); /* Set the background image */
-            background-size: cover; /* Adjust the background image size to cover the container */
+            background-size: contain; /* Adjust the background image size to cover the container */
             background-position: center; /* Center the background image */
             min-height: 90vh; /* Set the minimum height for the container */
             padding: 20px;
@@ -264,10 +264,10 @@ button:hover {
             color: white;
             font-size: 10px;
         }
-            
-​
-        
+                   
         .image-container {
+          filter:drop-shadow(0px 0px 10px /* the super duper awesome shadow around the image */
+            rgba(0,0,0,0.5));
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
@@ -456,9 +456,9 @@ button:hover {
 
 <div class="navbar" id="navbar">
   <a href="#home">HOME</a>
-  <a href="#about">ABOUT US</a>
-  <a href="#music">MUSIC</a>
-  <a href="#tickets">TICKETS</a>
+  <a href="#meet-the-band">ABOUT US</a>
+  <a href="#albums">MUSIC</a>
+  <a href="#tour">TICKETS</a>
   <a href="#contact">CONTACT</a>
   <a href="#login">LOGIN</a>
 </div>
